@@ -43,12 +43,14 @@ export function CreateRoom() {
               </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-3">
+              {isLoading && <p className='text-muted-foreground text-sm'>Carregando salas...</p>}
+              
               {data?.map((room) => {
                 return (
                   <Link
                     key={room.id}
                     to={`/rooms/${room.id}`}
-                    className="flex items-center justify-between p-3 rounded-lg border hover:bg-accent"
+                    className="flex items-center justify-between p-3 rounded-lg border hover:bg-accent/50"
                   >
                     <div className="flex flex-1  flex-col gap-1">
                       <h3 className="font-medium">{room.name}</h3>
