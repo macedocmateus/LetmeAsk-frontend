@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { dayjs } from '@/lib/dayjs'
 import { useQuery } from '@tanstack/react-query'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -53,7 +54,8 @@ export function CreateRoom() {
                       <h3 className="font-medium">{room.name}</h3>
 
                       <div className="flex items-center gap-2">
-                        <Badge>{room.questionsCount} perguntas</Badge>
+                        <Badge className="text-xs" variant="secondary">{dayjs(room.createdAt).toNow()}</Badge>
+                        <Badge className="text-xs" variant="secondary">{room.questionsCount} perguntas</Badge>
                       </div>
                     </div>
 
