@@ -6,6 +6,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
+import { useCreateRoom } from "@/http/use-create-room";
 
 
 const createRoomSchema = z.object({
@@ -18,6 +19,8 @@ const createRoomSchema = z.object({
 type CreateRoomFormData = z.infer<typeof createRoomSchema>
 
 export function CreateRoomForm() {
+    const {mutateAsync: createRoom} = useCreateRoom()
+    
     const createRoomForm = useForm<CreateRoomFormData>({
         resolver: zodResolver(createRoomSchema),
         defaultValues: {
@@ -26,9 +29,9 @@ export function CreateRoomForm() {
         }
     })
 
-    function handleCreateRoom(data: CreateRoomFormData) {
-        // biome-ignore lint/suspicious/noConsole: para fazer testes
-        console.log(data)
+    async function handleCreateRoom({name, description}: CreateRoomFormData) {
+        await createRoom({name, description})
+        await createRoomForm.reset()
     }
     
     return (
