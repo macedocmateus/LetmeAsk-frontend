@@ -23,7 +23,7 @@ export function RoomList() {
                 return (
                   <Link
                     key={room.id}
-                    to={`/rooms/${room.id}`}
+                    to={`/room/${room.id}`}
                     className="flex items-center justify-between p-3 rounded-lg border hover:bg-accent/50"
                   >
                     <div className="flex flex-1  flex-col gap-1">
